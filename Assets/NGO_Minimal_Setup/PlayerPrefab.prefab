@@ -16,6 +16,10 @@ GameObject:
   - component: {fileID: 202613903125603162}
   - component: {fileID: 456154194524809653}
   - component: {fileID: 5432800075477009767}
+  - component: {fileID: 6906541948138924419}
+  - component: {fileID: 4232543883135990912}
+  - component: {fileID: 9116038031115197770}
+  - component: {fileID: -8399792583854544556}
   m_Layer: 0
   m_Name: PlayerPrefab
   m_TagString: Untagged
@@ -124,8 +128,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 4182800461
-  InScenePlacedSourceGlobalObjectIdHash: 0
+  GlobalObjectIdHash: 3103158685
+  InScenePlacedSourceGlobalObjectIdHash: 3103158685
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
   ActiveSceneSynchronization: 0
@@ -189,3 +193,62 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac35373b42abe46ea8f7cab1a1c353f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6906541948138924419
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3545139849904106686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab98d1b8f9453d54e8d33de132825f3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _voiceEventReference:
+    Guid:
+      Data1: 405752906
+      Data2: 1296140394
+      Data3: -955272045
+      Data4: 1225479922
+    Path: event:/Voice Chat
+--- !u!114 &4232543883135990912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3545139849904106686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d490df594811eb7449c642a8333dc2fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &9116038031115197770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3545139849904106686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76a58b07250a7496fba23718f6d3cd54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _voiceRecorder: {fileID: 4232543883135990912}
+  _voiceEmitter: {fileID: 6906541948138924419}
+  _playbackOwnVoice: 0
+--- !u!114 &-8399792583854544556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3545139849904106686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96f11affa3ef47a4596d75cd114abbde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  voiceNetworker: {fileID: 9116038031115197770}
