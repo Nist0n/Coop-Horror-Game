@@ -237,7 +237,7 @@ MonoBehaviour:
   sourceProjectPath: coop_voice_chat/coop_voice_chat.fspro
   sourceBankPath: coop_voice_chat/Build
   sourceBankPathUnformatted: 
-  BankRefreshCooldown: 5
+  BankRefreshCooldown: 1
   ShowBankRefreshWindow: 1
   AutomaticEventLoading: 1
   BankLoadType: 0
@@ -247,7 +247,7 @@ MonoBehaviour:
   TargetAssetPath: FMODBanks
   TargetBankFolder: 
   EventLinkage: 0
-  LoggingLevel: 2
+  LoggingLevel: 4
   SpeakerModeSettings: []
   SampleRateSettings: []
   LiveUpdateSettings: []
