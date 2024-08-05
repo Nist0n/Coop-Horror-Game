@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 6906541948138924419}
   - component: {fileID: 4232543883135990912}
   - component: {fileID: 9116038031115197770}
-  - component: {fileID: -8399792583854544556}
+  - component: {fileID: 4938054518055808647}
   m_Layer: 0
   m_Name: PlayerPrefab
   m_TagString: Untagged
@@ -128,7 +128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 3103158685
+  GlobalObjectIdHash: 3703055923
   InScenePlacedSourceGlobalObjectIdHash: 3103158685
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -239,7 +239,7 @@ MonoBehaviour:
   _voiceRecorder: {fileID: 4232543883135990912}
   _voiceEmitter: {fileID: 6906541948138924419}
   _playbackOwnVoice: 0
---- !u!114 &-8399792583854544556
+--- !u!114 &4938054518055808647
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

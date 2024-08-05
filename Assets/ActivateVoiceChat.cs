@@ -1,7 +1,7 @@
 using UnityEngine;
 using ProximityChat;
 
-public class VoiceChatTest : MonoBehaviour
+public class ActivateVoiceChat : MonoBehaviour
 {
     [SerializeField] private VoiceNetworker voiceNetworker;
     // void Start()
