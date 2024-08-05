@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using ProximityChat;
 
@@ -8,5 +9,13 @@ public class VoiceChatTest : MonoBehaviour
     {
         voiceNetworker.StartRecording();
         Debug.Log("Started");
+    }
+
+    private void Update()
+    {
+        while (Input.GetKeyDown(KeyCode.V))
+        {
+            voiceNetworker.StartRecording();
+        }
     }
 }
