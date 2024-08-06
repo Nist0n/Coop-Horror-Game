@@ -10,6 +10,8 @@ public class PlayerMovement : MonoBehaviour
 
     private Rigidbody _rb;
     private bool _grounded;
+    private float _xInput;
+    private float _yInput;
 
     public enum PlayerStates
     {
@@ -29,19 +31,10 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         SpeedControl();
-        float xInput = Input.GetAxisRaw("Vertical");
-        float yInput = Input.GetAxisRaw("Horizontal");
         
-        Vector3 moveDirection = orientation.forward * xInput + yInput * orientation.right;
+        Move();
         
-        _rb.AddForce(moveDirection.normalized * speed * 10f, ForceMode.Force);
-
-        _grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
-
-        if (_grounded)
-            _rb.linearDamping = groundDrag;
-        else
-            _rb.linearDamping = 0;
+        Grounded();
     }
 
     private void SpeedControl()
@@ -53,5 +46,25 @@ public class PlayerMovement : MonoBehaviour
             Vector3 limitedVel = flatVel.normalized * speed;
             _rb.linearVelocity = new Vector3(limitedVel.x, _rb.linearVelocity.y, limitedVel.z);
         }
+    }
+
+    private void Move()
+    {
+        _xInput = Input.GetAxisRaw("Vertical");
+        _yInput = Input.GetAxisRaw("Horizontal");
+        
+        Vector3 moveDirection = orientation.forward * _xInput + _yInput * orientation.right;
+        
+        _rb.AddForce(moveDirection.normalized * speed * 10f, ForceMode.Force);
+    }
+
+    private void Grounded()
+    {
+        _grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
+
+        if (_grounded)
+            _rb.linearDamping = groundDrag;
+        else
+            _rb.linearDamping = 0;
     }
 }
