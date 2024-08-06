@@ -1,40 +1,30 @@
 using UnityEngine;
 using UnityEngine.UI;
-using Unity.Netcode;
 using UnityEngine.SceneManagement;
 
-
-public class ButtonManager : NetworkBehaviour
+public class ButtonManager : MonoBehaviour
 {
-    [SerializeField] private GameObject canvasMenu;
+    [SerializeField] private GameObject mainMenuButtons;
+    [SerializeField] private GameObject guidebookButton;
 
-    private void Update()
-    {
-        if (Input.GetKeyUp(KeyCode.Escape))
-        {
-            canvasMenu.SetActive(!canvasMenu.activeSelf);
-        }
-    }
 
-    public void OpenGameMenu()
+    public void PlayGame()
     {
-        canvasMenu.SetActive(true);
-    }
-
-    public void ResumeGame()
-    {
-        canvasMenu.SetActive(false);
-    }
-
-    public void OpenSettings() 
-    {
-        canvasMenu.SetActive(false);
-    }
-
-    public void QuitServer()
-    {
-        NetworkManager.Singleton.Shutdown();
         SceneManager.LoadScene("");
-        Debug.Log("All is work master");
+    }    
+    public void OpenSettings()
+    {
+
+    }
+
+    public void CLoseGame()
+    {
+        Application.Quit();
+    }
+
+    public void OpenGuidebook()
+    {
+        mainMenuButtons.SetActive(false);
+        guidebookButton.SetActive(false);
     }
 }
