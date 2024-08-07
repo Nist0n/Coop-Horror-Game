@@ -2035,3 +2035,4 @@ MonoBehaviour:
     doorPosition: 2
   - transform: {fileID: 4725654235035406033}
     doorPosition: 3
+  floorDimensions: {fileID: 6207495221516535914}
