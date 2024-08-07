@@ -1,7 +1,13 @@
+using System;
+using Unity.Netcode;
 using UnityEngine;
+using UnityEngine.Animations.Rigging;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : NetworkBehaviour
 {
+    private NetworkVariable<float> rigWeight =
+        new(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    
     [SerializeField] private float speed;
     [SerializeField] private float groundDrag;
     [SerializeField] private float playerHeight;
@@ -10,6 +16,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Animator animator;
     [SerializeField] private Transform aimTarget;
     [SerializeField] private Camera mainCamera;
+    [SerializeField] private MultiAimConstraint rig;
+    [SerializeField] private LayerMask playerLayer;
 
     private Rigidbody _rb;
     private AnimationController _animationController;
@@ -23,21 +31,31 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
+        rigWeight.OnValueChanged += (oldval, newval) =>
+        {
+            rig.weight = newval;
+        };
+
+        if (!IsOwner) return;
         _animationController = GetComponent<AnimationController>();
         _animationController.Setup(animator, _animInterpolY, _animInterpolX);
         _rb = GetComponent<Rigidbody>();
     }
     void Update()
     {
+        AimTargetFollow();
+        
+        if (!IsOwner) return;
+        
         transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x,mainCamera.transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z);
         
+        rigWeight.Value = rig.weight;
+
         SpeedControl();
         
         Move();
         
         Grounded();
-        
-        AimTargetFollow();
     }
 
     private void SpeedControl()

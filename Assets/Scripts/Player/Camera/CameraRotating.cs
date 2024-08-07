@@ -1,7 +1,8 @@
 using System;
+using Unity.Netcode;
 using UnityEngine;
 
-public class CameraRotating : MonoBehaviour
+public class CameraRotating : NetworkBehaviour
 {
     [SerializeField] private Transform orientation;
     [SerializeField] private float senX;
@@ -12,12 +13,14 @@ public class CameraRotating : MonoBehaviour
 
     private void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        //Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.visible = false;
     }
 
     private void Update()
     {
+        if (!IsOwner) return;
+        
         float mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * senX;
         float mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * senY;
 
