@@ -384,6 +384,18 @@ PrefabInstance:
       value: Spawn
       objectReference: {fileID: 0}
     - target: {fileID: 7360988314890374040, guid: e8b7c3abf59d2204daae60dfcc9d626c, type: 3}
+      propertyPath: maxRooms
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7360988314890374040, guid: e8b7c3abf59d2204daae60dfcc9d626c, type: 3}
+      propertyPath: openDoorBlockNS
+      value: 
+      objectReference: {fileID: 3621657878021350322, guid: cb29329f6f33deb40b0c83139c229850, type: 3}
+    - target: {fileID: 7360988314890374040, guid: e8b7c3abf59d2204daae60dfcc9d626c, type: 3}
+      propertyPath: openDoorBlockWE
+      value: 
+      objectReference: {fileID: 1346583211443716167, guid: d443cc1fa5a603948a5078c7d5b01631, type: 3}
+    - target: {fileID: 7360988314890374040, guid: e8b7c3abf59d2204daae60dfcc9d626c, type: 3}
       propertyPath: roomPrefabs.Array.size
       value: 3
       objectReference: {fileID: 0}
