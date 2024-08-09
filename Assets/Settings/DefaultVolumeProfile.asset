@@ -369,7 +369,7 @@ MonoBehaviour:
     m_Value: 0
   scatter:
     m_OverrideState: 1
-    m_Value: 0.7
+    m_Value: 0
   clamp:
     m_OverrideState: 1
     m_Value: 65472
@@ -890,10 +890,10 @@ MonoBehaviour:
     m_Value: 0
   smoothness:
     m_OverrideState: 1
-    m_Value: 0.2
+    m_Value: 0.01
   rounded:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 1
 --- !u!114 &7518938298396184218
 MonoBehaviour:
   m_ObjectHideFlags: 3
