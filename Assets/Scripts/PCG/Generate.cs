@@ -19,6 +19,7 @@ namespace PCG
         [SerializeField] private List<GameObject> southRoomPrefabs;
         [SerializeField] private List<GameObject> eastRoomPrefabs;
         [SerializeField] private List<GameObject> westRoomPrefabs;
+        [SerializeField] private List<GameObject> noDoorsPrefabs;
 
         [SerializeField] private GameObject openDoorBlockNS;
         [SerializeField] private GameObject openDoorBlockWE;
@@ -48,6 +49,9 @@ namespace PCG
                             break;
                         case DoorPosition.West:
                             westRoomPrefabs.Add(roomPrefab);
+                            break;
+                        default:
+                            noDoorsPrefabs.Add(roomPrefab);
                             break;
                     }
                 }       
@@ -96,7 +100,6 @@ namespace PCG
             Door randomDoor;
             
             Room chosenRoomPrefab;
-            int prefabDoor;
             float offsetX = 0f;
             float offsetZ = 0f;
             
@@ -110,22 +113,18 @@ namespace PCG
                 {
                     case DoorPosition.North:
                         chosenRoomPrefab = southRoomPrefabs[Random.Range(0, southRoomPrefabs.Count)].GetComponent<Room>();
-                        prefabDoor = chosenRoomPrefab.doors.FindIndex(x => x.doorPosition == DoorPosition.South);
                         offsetX = -chosenRoomPrefab.floorDimensions.localScale.x * 5;
                         break;
                     case DoorPosition.South:
                         chosenRoomPrefab = northRoomPrefabs[Random.Range(0, northRoomPrefabs.Count)].GetComponent<Room>();
-                        prefabDoor = chosenRoomPrefab.doors.FindIndex(x => x.doorPosition == DoorPosition.North);
                         offsetX = chosenRoomPrefab.floorDimensions.localScale.x * 5;
                         break;
                     case DoorPosition.East:
                         chosenRoomPrefab = westRoomPrefabs[Random.Range(0, westRoomPrefabs.Count)].GetComponent<Room>();
-                        prefabDoor = chosenRoomPrefab.doors.FindIndex(x => x.doorPosition == DoorPosition.West);
                         offsetZ = chosenRoomPrefab.floorDimensions.localScale.z * 5;
                         break;
                     default:
                         chosenRoomPrefab = eastRoomPrefabs[Random.Range(0, eastRoomPrefabs.Count)].GetComponent<Room>();
-                        prefabDoor = chosenRoomPrefab.doors.FindIndex(x => x.doorPosition == DoorPosition.East);
                         offsetZ = -chosenRoomPrefab.floorDimensions.localScale.z * 5;
                         break;
                 }
@@ -133,7 +132,7 @@ namespace PCG
                 randomDoorPos = randomDoor.transform.position;
                 newPos = new Vector3(randomDoorPos.x + offsetX, randomDoorPos.y, randomDoorPos.z + offsetZ);
 
-                // Check if space is empty
+                // Check if space is empty. Radius is a random chosen value for now
                 if (Physics.CheckSphere(newPos, 3.0f))
                 {
                     spaceTaken = true;
@@ -171,24 +170,16 @@ namespace PCG
                 return lastRoom;
             }
             
-            Room newRoom = Instantiate(chosenRoomPrefab.gameObject, newPos, Quaternion.identity).GetComponent<Room>();
+            Room createdRoom = Instantiate(chosenRoomPrefab.gameObject, newPos, Quaternion.identity).GetComponent<Room>();
 
-            List<int> newRoomCorrespondingDoors = new List<int>();
-
-            for (int i = 0; i < chosenRoomPrefab.doors.Count; i++)
+            List<Door> newRoomCorrespondingDoors = createdRoom.doors.FindAll(x => x.transform.position == randomDoor.transform.position);
+            
+            foreach (var door in newRoomCorrespondingDoors)
             {
-                if (chosenRoomPrefab.doors[i].transform.position.Equals(randomDoor.transform.position))
-                {
-                    newRoomCorrespondingDoors.Add(i);
-                }
+                createdRoom.doors.Remove(door);
             }
             
-            // foreach (var door in newRoomCorrespondingDoors)
-            // {
-            //     newRoom.doors.Remove(door);
-            // }
-            // newRoom.doors.RemoveAt(chosenDoor);
-            return newRoom.gameObject;
+            return createdRoom.gameObject;
         }
     }
 
