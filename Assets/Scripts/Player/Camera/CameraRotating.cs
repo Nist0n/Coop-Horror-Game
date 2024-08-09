@@ -2,7 +2,7 @@ using System;
 using Unity.Netcode;
 using UnityEngine;
 
-public class CameraRotating : NetworkBehaviour
+public class CameraRotating : MonoBehaviour
 {
     [SerializeField] private Transform orientation;
     [SerializeField] private float senX;
@@ -19,8 +19,6 @@ public class CameraRotating : NetworkBehaviour
 
     private void Update()
     {
-        if (!IsOwner) return;
-        
         float mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * senX;
         float mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * senY;
 

@@ -17,7 +17,6 @@ public class PlayerMovement : NetworkBehaviour
     [SerializeField] private Transform aimTarget;
     [SerializeField] private Camera mainCamera;
     [SerializeField] private MultiAimConstraint rig;
-    [SerializeField] private LayerMask playerLayer;
 
     private Rigidbody _rb;
     private AnimationController _animationController;
@@ -31,6 +30,11 @@ public class PlayerMovement : NetworkBehaviour
 
     void Start()
     {
+        if (IsLocalPlayer)
+        {
+            mainCamera.gameObject.SetActive(true);
+        }
+        
         rigWeight.OnValueChanged += (oldval, newval) =>
         {
             rig.weight = newval;
