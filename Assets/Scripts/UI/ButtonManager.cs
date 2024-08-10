@@ -4,27 +4,47 @@ using UnityEngine.SceneManagement;
 
 public class ButtonManager : MonoBehaviour
 {
-    [SerializeField] private GameObject mainMenuButtons;
-    [SerializeField] private GameObject guidebookButton;
+    [SerializeField] private GameObject mainMenuUI;
+    [SerializeField] private GameObject settingsUI;
+    [SerializeField] private GameObject guidebookUI;
+    [SerializeField] private GameObject sessionUI;
 
-
-    public void PlayGame()
+    private void Update()
     {
-        SceneManager.LoadScene("");
-    }    
-    public void OpenSettings()
-    {
-
+        if (Input.GetKeyUp(KeyCode.Escape))
+        {
+            mainMenuUI.SetActive(true);
+            settingsUI.SetActive(false);
+            guidebookUI.SetActive(false);
+        }
     }
 
-    public void CLoseGame()
+    public void CreateSession()
+    {
+        mainMenuUI.SetActive(false);
+        sessionUI.SetActive(true);
+    }
+    
+    public void PlayGame()
+    {
+        SceneManager.LoadScene("VLAD UI");
+    }    
+
+    public void OpenSettings()
+    {
+        mainMenuUI.SetActive(false);
+        settingsUI.SetActive(true);
+    }
+
+    public void CloseGame()
     {
         Application.Quit();
+        Debug.Log("Everything is working master");
     }
 
     public void OpenGuidebook()
     {
-        mainMenuButtons.SetActive(false);
-        guidebookButton.SetActive(false);
+        mainMenuUI.SetActive(false);
+        guidebookUI.SetActive(true);
     }
 }

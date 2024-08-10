@@ -14,12 +14,15 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Multiplayer.unity
     guid: 404d8ec2f0e65e14486e8b54a62188e0
-  - enabled: 0
+  - enabled: 1
     path: Assets/VLAD WORKS/VLAD UI.unity
     guid: 11d1db00014774b47a78da1a46a41817
   - enabled: 1
     path: Assets/Scenes/Testing session connecting.unity
     guid: d5ce7f01f3d297f41a6f212b3850a508
+  - enabled: 1
+    path: Assets/VLAD WORKS/MainMenu.unity
+    guid: 1ee0cc47a44c28d43926b50d1f818b9a
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
