@@ -942,11 +942,19 @@ PlayerSettings:
   captureStartupLogs: {}
   activeInputHandler: 2
   windowsGamepadBackendHint: 0
+<<<<<<< HEAD
   cloudProjectId: 06a6bcc8-b4c3-4736-b140-17a232392ebb
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
   projectName: Coop_Horror_Game
   organizationId: n1ston
+=======
+  cloudProjectId: efe8464b-6bdc-4cfc-a023-5d14e8a46e05
+  framebufferDepthMemorylessMode: 0
+  qualitySettingsNames: []
+  projectName: My project
+  organizationId: blank6
+>>>>>>> parent of e26e3ac (xD)
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   hmiLoadingImage: {fileID: 0}
