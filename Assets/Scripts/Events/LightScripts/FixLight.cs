@@ -6,6 +6,7 @@ public class FixLight : MonoBehaviour
     [SerializeField] private GameObject enableSign;
     
     private ControllingLightOnScene _controllingLight;
+    private PlayerMovement _player;
     private readonly float _timeToEnd = 4f;
     private float _timer;
     private bool _isButtonPressed = false;
@@ -26,6 +27,7 @@ public class FixLight : MonoBehaviour
                 enableSign.SetActive(false);
                 _timer = 0;
                 _isButtonPressed = false;
+                _player.IsActioning = false;
             }
         }
         else
@@ -40,6 +42,7 @@ public class FixLight : MonoBehaviour
         {
             if (other.CompareTag("Player"))
             {
+                _player = other.GetComponent<PlayerMovement>();
                 enableSign.SetActive(true);
             }
         }
@@ -51,6 +54,11 @@ public class FixLight : MonoBehaviour
         {
             if (!_controllingLight.IsLightOn)
             {
+                if (_player == null)
+                {
+                    _player = other.GetComponent<PlayerMovement>();
+                }
+                
                 if (!enableSign.activeSelf)
                 {
                     enableSign.SetActive(true);
@@ -59,10 +67,12 @@ public class FixLight : MonoBehaviour
                 if (Input.GetKey(KeyCode.E))
                 {
                     _isButtonPressed = true;
+                    _player.IsActioning = true;
                 }
                 else
                 {
                     _isButtonPressed = false;
+                    _player.IsActioning = false;
                 }
             }
         }

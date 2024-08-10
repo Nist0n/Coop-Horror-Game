@@ -1103,7 +1103,7 @@ GameObject:
   - component: {fileID: 484041538155621419}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1190,7 +1190,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 3579762058
+  GlobalObjectIdHash: 109296769
   InScenePlacedSourceGlobalObjectIdHash: 662600468
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -1222,7 +1222,7 @@ MonoBehaviour:
   aimTarget: {fileID: 5569592703326850943}
   mainCamera: {fileID: 485838217004136032}
   rig: {fileID: 8249149767120786507}
-  isActioning: 0
+  IsActioning: 0
 --- !u!65 &8593513324046330893
 BoxCollider:
   m_ObjectHideFlags: 0

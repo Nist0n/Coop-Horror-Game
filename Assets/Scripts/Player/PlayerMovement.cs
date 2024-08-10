@@ -25,7 +25,7 @@ public class PlayerMovement : NetworkBehaviour
     private readonly float _animInterpolX = 0f;
     private readonly float _animInterpolY = 0f;
 
-    public bool isActioning;
+    public bool IsActioning = false;
 
     void Start()
     {
@@ -82,66 +82,75 @@ public class PlayerMovement : NetworkBehaviour
         if (!Input.GetKey(KeyCode.LeftShift) && !Input.GetKey(KeyCode.LeftControl)) speed = 1.5f;
 
         if (_xInput < 0) speed = 1;
-
-        if (_xInput != 0 || _yInput != 0)
-        {
-            if (_xInput < 0)
-            {
-                speed = Mathf.Lerp(speed, 1, Time.deltaTime * 3);
-                _animationController.SneakBackward();
-            }
-            else
-            {
-                if (Input.GetKey(KeyCode.LeftControl))
-                {
-                    if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D)) _yInput = 0;
-                    
-                    if (Input.GetKey(KeyCode.W))
-                    {
-                        speed = Mathf.Lerp(speed, 3, Time.deltaTime * 3);
-                        _animationController.Run();
-                    }
-                }
-                else if (Input.GetKey(KeyCode.LeftShift))
-                {
-                    if (Input.GetKey(KeyCode.D))
-                    {
-                        speed = Mathf.Lerp(speed, 1, Time.deltaTime * 3);
-                        _animationController.SneakRight();
-                    }
-                    else if (Input.GetKey(KeyCode.A))
-                    {
-                        speed = Mathf.Lerp(speed, 1, Time.deltaTime * 3);
-                        _animationController.SneakLeft();
-                    }
-                    else
-                    {
-                        speed = Mathf.Lerp(speed, 1, Time.deltaTime * 3);
-                        _animationController.Sneak();
-                    }
-                }
-                else if (!Input.GetKey(KeyCode.LeftShift) && !Input.GetKey(KeyCode.LeftControl))
-                {
-                    if (Input.GetKey(KeyCode.D))
-                    {
-                        speed = Mathf.Lerp(speed, 2, Time.deltaTime * 3);
-                        _animationController.WalkRight();
-                    }
-                    else if (Input.GetKey(KeyCode.A))
-                    {
-                        speed = Mathf.Lerp(speed, 2, Time.deltaTime * 3);
-                        _animationController.WalkLeft();
-                    }
-                    else
-                    {
-                        speed = Mathf.Lerp(speed, 2, Time.deltaTime * 3);
-                        _animationController.Walk();
-                    }
-                }
-            }
-        }
-        else _animationController.Idle();
         
+        if (IsActioning && Input.GetKey(KeyCode.E))
+        {
+            animator.Play("Actioning");
+            speed = 0;
+        }
+        else
+        {
+            animator.Play("New State");
+            if (_xInput != 0 || _yInput != 0) 
+            { 
+                if (_xInput < 0)
+                {
+                    speed = Mathf.Lerp(speed, 1, Time.deltaTime * 3);
+                    _animationController.SneakBackward();
+                }
+                else
+                {
+                    if (Input.GetKey(KeyCode.LeftControl))
+                    {
+                        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D)) _yInput = 0;
+                        
+                        if (Input.GetKey(KeyCode.W))
+                        {
+                            speed = Mathf.Lerp(speed, 3, Time.deltaTime * 3);
+                            _animationController.Run();
+                        }
+                    }
+                    else if (Input.GetKey(KeyCode.LeftShift))
+                    {
+                        if (Input.GetKey(KeyCode.D))
+                        {
+                            speed = Mathf.Lerp(speed, 1, Time.deltaTime * 3);
+                            _animationController.SneakRight();
+                        }
+                        else if (Input.GetKey(KeyCode.A))
+                        {
+                            speed = Mathf.Lerp(speed, 1, Time.deltaTime * 3);
+                            _animationController.SneakLeft();
+                        }
+                        else
+                        {
+                            speed = Mathf.Lerp(speed, 1, Time.deltaTime * 3);
+                            _animationController.Sneak();
+                        }
+                    }
+                    else if (!Input.GetKey(KeyCode.LeftShift) && !Input.GetKey(KeyCode.LeftControl))
+                    {
+                        if (Input.GetKey(KeyCode.D))
+                        {
+                            speed = Mathf.Lerp(speed, 2, Time.deltaTime * 3);
+                            _animationController.WalkRight();
+                        }
+                        else if (Input.GetKey(KeyCode.A))
+                        {
+                            speed = Mathf.Lerp(speed, 2, Time.deltaTime * 3);
+                            _animationController.WalkLeft();
+                        }
+                        else
+                        {
+                            speed = Mathf.Lerp(speed, 2, Time.deltaTime * 3);
+                            _animationController.Walk();
+                        }
+                    }
+                }
+            }
+            else _animationController.Idle();
+        }
+
         Vector3 moveDirection = orientation.forward * _xInput + _yInput * orientation.right;
         
         _rb.AddForce(moveDirection.normalized * speed * 10f, ForceMode.Force);
