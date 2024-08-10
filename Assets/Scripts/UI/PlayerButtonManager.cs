@@ -35,6 +35,6 @@ public class PlayerButtonManager : NetworkBehaviour
     {
         NetworkManager.Singleton.Shutdown();
         SceneManager.LoadScene("");
-        Debug.Log("All is work master");
+        Debug.Log("Everything is working master");
     }
 }
