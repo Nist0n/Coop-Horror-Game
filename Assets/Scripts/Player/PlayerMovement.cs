@@ -5,8 +5,7 @@ using UnityEngine.Animations.Rigging;
 
 public class PlayerMovement : NetworkBehaviour
 {
-    private NetworkVariable<float> rigWeight =
-        new(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    private NetworkVariable<float> rigWeight = new(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     
     [SerializeField] private float speed;
     [SerializeField] private float groundDrag;

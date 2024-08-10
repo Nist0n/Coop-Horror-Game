@@ -1,7 +1,7 @@
 using Unity.Netcode;
 using UnityEngine;
 
-public class AnimationController : NetworkBehaviour
+public class AnimationController : MonoBehaviour
 {
     private Animator animator;
     private float _animInterpolX;
