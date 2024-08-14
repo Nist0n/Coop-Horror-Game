@@ -1,20 +1,35 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class ControllingLightOnScene : MonoBehaviour
 {
-    //LightOff сделать приватным когда придумаем условие выключения света
-    
     private List<GameObject> _lights;
+    private float _timer;
+    private float _timeToEvent;
 
     public bool IsLightOn = true;
     
     private void Start()
     {
+        RandomEventTime();
         _lights = FindGameObjectsInLayer(8);
     }
-    
+
+    private void Update()
+    {
+        if (IsLightOn)
+        {
+            _timer += Time.deltaTime;
+            if (_timer >= +_timeToEvent)
+            {
+                LightOff();
+                RandomEventTime();
+            }
+        }
+    }
+
     /// <summary>
     /// 8 - номер светового слоя
     /// </summary>
@@ -53,7 +68,7 @@ public class ControllingLightOnScene : MonoBehaviour
         IsLightOn = true;
     }
     
-    public void LightOff()
+    private void LightOff()
     {
         foreach (var light in _lights)
         {
@@ -61,5 +76,12 @@ public class ControllingLightOnScene : MonoBehaviour
         }
 
         IsLightOn = false;
+        _timer = 0;
+    }
+
+    private void RandomEventTime()
+    {
+        float time = Random.Range(240, 360);
+        _timeToEvent = time;
     }
 }

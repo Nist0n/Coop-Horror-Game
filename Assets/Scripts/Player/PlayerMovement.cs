@@ -77,16 +77,12 @@ public class PlayerMovement : NetworkBehaviour
         _xInput = Input.GetAxisRaw("Vertical");
         _yInput = Input.GetAxisRaw("Horizontal");
 
-        if (Input.GetKey(KeyCode.LeftShift)) speed = 1;
-        
         if (!Input.GetKey(KeyCode.LeftShift) && !Input.GetKey(KeyCode.LeftControl)) speed = 1.5f;
 
-        if (_xInput < 0) speed = 1;
-        
         if (IsActioning && Input.GetKey(KeyCode.E))
         {
             animator.Play("Actioning");
-            speed = 0;
+            return;
         }
         else
         {
@@ -100,7 +96,7 @@ public class PlayerMovement : NetworkBehaviour
                 }
                 else
                 {
-                    if (Input.GetKey(KeyCode.LeftControl))
+                    if (Input.GetKey(KeyCode.LeftControl) && !Input.GetKey(KeyCode.LeftShift))
                     {
                         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D)) _yInput = 0;
                         
@@ -110,7 +106,7 @@ public class PlayerMovement : NetworkBehaviour
                             _animationController.Run();
                         }
                     }
-                    else if (Input.GetKey(KeyCode.LeftShift))
+                    else if (Input.GetKey(KeyCode.LeftShift) && !Input.GetKey(KeyCode.LeftControl))
                     {
                         if (Input.GetKey(KeyCode.D))
                         {
