@@ -7,5 +7,7 @@ namespace PCG
     {
         public List<Door> doors;
         public Transform floorDimensions;
+
+        public bool isHallway;
     }
 }

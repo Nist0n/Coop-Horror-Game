@@ -9,4 +9,12 @@ namespace PCG
         public Transform transform;
         public DoorPosition doorPosition;
     }
+    
+    public enum DoorPosition
+    {
+        North,
+        South,
+        East,
+        West
+    }
 }

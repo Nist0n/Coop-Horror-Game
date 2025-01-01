@@ -377,6 +377,7 @@ MonoBehaviour:
   - transform: {fileID: 1995775341564382046}
     doorPosition: 1
   floorDimensions: {fileID: 3766941648843461896}
+  isHallway: 1
 --- !u!1 &2848272516864242256
 GameObject:
   m_ObjectHideFlags: 0

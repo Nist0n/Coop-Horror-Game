@@ -655,7 +655,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0721a734fb144ad9ac20e30ac27fb3f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  doors: []
+  doors:
+  - transform: {fileID: 6858931800024054328}
+    doorPosition: 4
   floorDimensions: {fileID: 9102404587771848895}
 --- !u!1 &6072032049258220738
 GameObject:
@@ -779,7 +781,7 @@ GameObject:
   - component: {fileID: 8742376320393432153}
   - component: {fileID: 8712469735186779601}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
